@@ -1,0 +1,112 @@
+<app-header />
+
+<main class="space-y-28 px-1">
+    <section>
+        <h2 class="text-center my-10">Cadastrar Tarefa</h2>
+            
+        <form method="post" class="flex flex-col gap-6 w-full max-w-screen-md mx-auto">
+            <div class="md:flex max-md:flex-col md:gap-6 items-center justify-center">
+                <label for="title" class="w-1/5 text-right max-md:text-xs">
+                  Títtulo:
+                </label>
+                <input type="text" name="title" class="border border-zinc-400 rounded-md p-1 w-full" />
+            </div>
+
+            <div class="md:flex max-md:flex-col md:gap-6 items-start justify-center">
+                <label for="description" class="w-1/5 text-right max-md:text-xs">
+                    Descrição:
+                </label>
+                <textarea name="description" class="border border-zinc-400 rounded-md p-1 h-40 w-full"></textarea>
+            </div>
+
+          <div class="md:flex flex-col md:gap-6 md:flex-row max-md:space-y-11">
+            <div class="flex md:gap-17 items-center md:justify-start justify-evenly md:w-1/2">
+                <label for="responsible" class="md:text-right md:w-1/5 md:ml-1 max-md:text-xs" >
+                  Responsável:
+                </label>
+
+                <select
+                name="responsible"
+                class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+                <option value="Selecione">Selecione</option>
+          
+              </select>
+            </div>
+
+            <div class="flex md:gap-6 items-center md:justify-end justify-evenly md:w-1/2">
+                <label for="responsible" class="max-md:text-xs">
+                  Prioridade:
+                </label>
+
+                <select
+                name="priority"
+                class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+                <option value="Selecione">Selecione</option>
+           
+              </select>
+            </div>
+          </div>
+
+          <div class="flex md:gap-6 items-center md:justify-start justify-evenly my-5">
+              <label for="title" class="md:w-1/6 text-right md:-ml-1.5 max-md:text-xs">
+                Deadline:
+              </label>
+              <input type="text" name="title" class="border border-zinc-400 rounded-md p-1 w-1/2 md:w-1/4" />
+          </div>
+         
+          <button class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm">Cadastrar</button>
+        </form>
+    </section>
+
+    <section>
+      <h2 class="text-center my-10">Listagem de Tarefas</h2>
+          
+      <form method="post" class="flex flex-col gap-6 w-full max-w-screen-md mx-auto">
+          <div class="md:flex max-md:flex-col md:gap-3 items-center justify-start">
+              <label for="title" class="md:w-1/5 text-right max-md:text-xs ml-3">
+              Número:
+              </label>
+              <input type="text" name="title" class="border border-zinc-400 rounded-md p-1 md:w-1/5" />
+          </div>
+
+          <div class="md:flex max-md:flex-col md:gap-6 items-center justify-center">
+              <label for="searchByTitleOrDescription" class="w-1/5 text-right max-md:text-xs">
+                  Título/Descrição:
+              </label>
+              <input name="searchByTitleOrDescription" class="border border-zinc-400 rounded-md p-1 w-full" />
+          </div>
+
+        <div class="flex flex-col md:flex-row max-md:space-y-11">
+          <div class="flex md:gap-16 items-center md:justify-start justify-evenly md:w-1/2">
+              <label for="responsible" class="text-right w-1/5 ml-1 max-md:text-xs" >
+                Responsável:
+              </label>
+
+              <select
+              name="responsible"
+              class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+              <option value="Selecione">Selecione</option>
+          
+            </select>
+          </div>
+
+          <div class="flex md:gap-6 items-center md:justify-start justify-evenly md:w-1/2">
+              <label for="responsible" class="max-md:text-xs">
+                Prioridade:
+              </label>
+
+              <select
+              name="priority"
+              class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+              <option value="Selecione">Selecione</option>
+            
+            </select>
+          </div>
+
+          <button class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm whitespace-nowrap">buscar Tarefa</button>
+        </div>
+
+        <app-table class="w-full mt-4" />
+      </form>
+  </section>
+</main>
