@@ -13,3 +13,13 @@
     @apply antialiased box-border;
   }
 }
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: black;
+  }
+}

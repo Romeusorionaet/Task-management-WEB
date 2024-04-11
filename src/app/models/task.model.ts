@@ -7,6 +7,7 @@ export interface Task {
     title: string
     description: string
     responsibleUser: string
+    priority: number
     deadline: Date
     status: StatusTask
     createdAt: Date
