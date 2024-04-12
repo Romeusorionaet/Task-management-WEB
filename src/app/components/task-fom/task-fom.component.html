@@ -1,14 +1,14 @@
 <section>
-    <h2 class="text-center my-10">Cadastrar Tarefa</h2>
+    <h2 class="text-center my-10 md:text-xl">Cadastrar Tarefa</h2>
         
-    <form [formGroup]="taskForm"  class="flex flex-col w-full max-w-screen-md mx-auto">
-        <div class="md:flex max-md:flex-col md:gap-6 items-center justify-center">
+    <form [formGroup]="taskForm" class="flex md:gap-10 flex-col w-full max-w-screen-md mx-auto">
+        <div class="md:flex max-md:flex-col md:gap-6 items-center justify-center relative">
             <label for="title" class="w-1/5 text-right max-md:text-xs">
               Títtulo:
             </label>
             <input formControlName="title" type="text" name="title" class="border border-zinc-400 rounded-md p-1 w-full" />
 
-            <div class="h-6">
+            <div class="h-6 md:absolute top-8 right-0">
               <div *ngIf="taskForm.controls['title'].invalid && (isFormSubmitted || taskForm.controls['title'].touched || taskForm.controls['title'].dirty)">
                 <span class="text-red-500 text-xs" *ngIf="taskForm.controls['title'].errors?.['required']">
                   Campo obrigatório!
@@ -18,13 +18,13 @@
             </div>
         </div>
 
-        <div class="md:flex max-md:flex-col md:gap-6 items-start justify-center">
+        <div class="md:flex max-md:flex-col md:gap-6 items-start justify-center relative">
             <label for="description" class="w-1/5 text-right max-md:text-xs">
                 Descrição:
             </label>
             <textarea formControlName="description" name="description" class="border border-zinc-400 rounded-md p-1 h-40 w-full"></textarea>
 
-            <div class="h-16">
+            <div class="h-16 md:absolute -bottom-16 right-0">
               <div *ngIf="taskForm.controls['description'].invalid && (isFormSubmitted || taskForm.controls['description'].touched || taskForm.controls['description'].dirty)">
                 <span class="text-red-500 text-xs" *ngIf="taskForm.controls['description'].errors?.['required']">
                   Campo obrigatório!
@@ -49,7 +49,7 @@
             <option value="Fulano">Fulano</option>
           </select>
 
-          <div class="h-6 absolute top-6 right-8">
+          <div class="h-6 absolute top-6 md:top-8 right-8 md:right-10">
             <div *ngIf="taskForm.controls['responsibleUser'].invalid && (isFormSubmitted || taskForm.controls['responsibleUser'].touched || taskForm.controls['responsibleUser'].dirty)">
               <span class="text-red-500 text-xs" *ngIf="taskForm.controls['responsibleUser'].errors?.['required']">
                 Campo obrigatório!
@@ -71,7 +71,7 @@
             <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
           </select>
 
-          <div class="h-6 absolute top-6 right-8">
+          <div class="h-6 absolute top-6 md:top-8 right-8 md:right-0">
             <div *ngIf="taskForm.controls['priority'].invalid && (isFormSubmitted || taskForm.controls['priority'].touched || taskForm.controls['priority'].dirty)">
               <span class="text-red-500 text-xs" *ngIf="taskForm.controls['priority'].errors?.['required']">
                 Campo obrigatório!
@@ -87,7 +87,7 @@
           </label>
           <input formControlName="deadline" type="date" name="deadline" class="border border-zinc-400 rounded-md p-1 w-1/2 md:w-1/4" />
 
-          <div class="h-6 absolute top-8 right-8">
+          <div class="h-6 absolute top-8 right-8 md:left-56">
             <div *ngIf="taskForm.controls['deadline'].invalid && (isFormSubmitted || taskForm.controls['deadline'].touched || taskForm.controls['deadline'].dirty)">
               <span class="text-red-500 text-xs" *ngIf="taskForm.controls['deadline'].errors?.['required']">
                 Campo obrigatório!
