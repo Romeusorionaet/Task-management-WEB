@@ -10,7 +10,7 @@
     </thead>
         <tbody class="bg-zinc-200">
           @for(task of tasks; track task.id){
-            <tr class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
+            <tr *ngIf="task.status === statusTask" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
               <td class="text-center">{{task.priority}}</td>
               <td class="text-center truncate">
                 <div class="overflow-hidden w-20 md:w-32 mx-auto">
@@ -25,7 +25,7 @@
               <td class="md:flex h-20 max-md:flex-col items-start md:items-center md:justify-evenly">
                 <button class="max-md:w-full text-start">Editar</button>
                 <button type="button" (click)="task.id && removeTask(task.id)" class="max-md:mt-2">Excluir</button>
-                <button class="max-md:mt-2">Concluir</button>
+                <button type="button" (click)="task.id && completeTask(task.id)" class="max-md:mt-2">Concluir</button>
               </td>
             </tr>
           }@empty {

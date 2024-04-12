@@ -1,6 +1,8 @@
 export enum StatusTask {
-    PROGRESS, DONE
+    PROGRESS = 'PROGRESS',
+    DONE = 'DONE'
 }
+
 
 export interface Task {
     id?: string
