@@ -1,0 +1,95 @@
+<section>
+    <h2 class="text-center my-10">Cadastrar Tarefa</h2>
+        
+    <form [formGroup]="taskForm"  class="flex flex-col gap-6 w-full max-w-screen-md mx-auto">
+        <div class="md:flex max-md:flex-col md:gap-6 items-center justify-center">
+            <label for="title" class="w-1/5 text-right max-md:text-xs">
+              Títtulo:
+            </label>
+            <input formControlName="title" type="text" name="title" class="border border-zinc-400 rounded-md p-1 w-full" />
+
+            <div *ngIf="taskForm.controls['title'].invalid && (isFormSubmitted || taskForm.controls['title'].touched || taskForm.controls['title'].dirty)">
+              <span *ngIf="taskForm.controls['title'].errors?.['required']">
+                Campo obrigatório!
+              </span>
+              <span *ngIf="taskForm.controls['title'].errors?.['minlength']">O título deve conter no mínimo 3 caracteres.</span>
+            </div>
+        </div>
+
+        <div class="md:flex max-md:flex-col md:gap-6 items-start justify-center">
+            <label for="description" class="w-1/5 text-right max-md:text-xs">
+                Descrição:
+            </label>
+            <textarea formControlName="description" name="description" class="border border-zinc-400 rounded-md p-1 h-40 w-full"></textarea>
+
+            <div *ngIf="taskForm.controls['description'].invalid && (isFormSubmitted || taskForm.controls['description'].touched || taskForm.controls['description'].dirty)">
+              <span *ngIf="taskForm.controls['description'].errors?.['required']">
+                Campo obrigatório!
+              </span>
+              <span *ngIf="taskForm.controls['description'].errors?.['minlength']">A descrição da tarefa deve conter no mínimo 10 caracteres para fornecer detalhes adequados sobre a tarefa.</span>
+            </div>
+        </div>
+
+      <div class="md:flex flex-col md:gap-6 md:flex-row max-md:space-y-11">
+        <div class="flex md:gap-17 items-center md:justify-start justify-evenly md:w-1/2">
+          <label for="responsibleUser" class="md:text-right md:w-1/5 md:ml-1 max-md:text-xs" >
+            Responsável:
+          </label>
+
+          <select
+          formControlName="responsibleUser"
+          name="responsibleUser"
+          class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+            <option value="">Selecione</option>
+            <option value="Romeu">Romeu</option>
+            <option value="Fulano">Fulano</option>
+          </select>
+
+          <div *ngIf="taskForm.controls['responsibleUser'].invalid && (isFormSubmitted || taskForm.controls['responsibleUser'].touched || taskForm.controls['responsibleUser'].dirty)">
+            <span *ngIf="taskForm.controls['responsibleUser'].errors?.['required']">
+              Campo obrigatório!
+            </span>
+          </div>
+        </div>
+
+        <div class="flex md:gap-6 items-center md:justify-end justify-evenly md:w-1/2">
+            <label for="priority" class="max-md:text-xs">
+              Prioridade:
+            </label>
+
+          <select
+          formControlName="priority"
+          name="priority"
+          class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+            <option value="">Selecione</option>
+            <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
+          </select>
+
+          <div *ngIf="taskForm.controls['priority'].invalid && (isFormSubmitted || taskForm.controls['priority'].touched || taskForm.controls['priority'].dirty)">
+            <span *ngIf="taskForm.controls['priority'].errors?.['required']">
+              Campo obrigatório!
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex md:gap-6 items-center md:justify-start justify-evenly my-5">
+          <label for="deadline" class="md:w-1/6 text-right md:-ml-1.5 max-md:text-xs">
+            Deadline:
+          </label>
+          <input formControlName="deadline" type="date" name="deadline" class="border border-zinc-400 rounded-md p-1 w-1/2 md:w-1/4" />
+
+          <div *ngIf="taskForm.controls['deadline'].invalid && (isFormSubmitted || taskForm.controls['deadline'].touched || taskForm.controls['deadline'].dirty)">
+            <span *ngIf="taskForm.controls['deadline'].errors?.['required']">
+              Campo obrigatório!
+            </span>
+
+            <span *ngIf="taskForm.controls['deadline'].errors?.['minDeadline']">
+              A data de vencimento deve ser de no mínimo 1 dia futuro de diferença da data atual.
+            </span>
+          </div>
+      </div>
+     
+      <button type="submit" (click)="onSubmit()" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm">Cadastrar</button>
+    </form>
+</section>

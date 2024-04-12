@@ -3,12 +3,12 @@ export enum StatusTask {
 }
 
 export interface Task {
-    id: string
+    id?: string
     title: string
     description: string
     responsibleUser: string
     priority: number
-    deadline: Date
-    status: StatusTask
-    createdAt: Date
+    deadline: string
+    status?: StatusTask
+    createdAt?: Date
 }

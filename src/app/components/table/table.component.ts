@@ -15,6 +15,7 @@ export class TableComponent {
 
   url = environment.api
   tasks: Task[] = []
+  
   ngOnInit(): void {
     this.getTasks()
   }
