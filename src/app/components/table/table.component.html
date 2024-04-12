@@ -24,7 +24,7 @@
               </td>
               <td class="md:flex h-20 max-md:flex-col items-start md:items-center md:justify-evenly">
                 <button class="max-md:w-full text-start">Editar</button>
-                <button class="max-md:mt-2">Excluir</button>
+                <button type="button" (click)="task.id && removeTask(task.id)" class="max-md:mt-2">Excluir</button>
                 <button class="max-md:mt-2">Concluir</button>
               </td>
             </tr>

@@ -26,4 +26,18 @@ export class TableComponent {
       this.tasks = tasks
     })
   }
+
+  removeTask(taskId: string){
+    this.http.delete<Task[]>(`${this.url}/task/remove/${taskId}`).subscribe({
+      next: response => {
+        //Todo show in toolltip
+          console.log('Task removed successfully', response);
+          this.ngOnInit()
+      },
+      error: error => {
+        //Todo show in toolltip
+          console.error('Failed to remove task', error);
+      }
+  });
+  }
 }
