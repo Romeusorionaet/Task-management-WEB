@@ -1,5 +1,6 @@
-<section>
-    <h2 class="text-center my-10 md:text-xl">Cadastrar Tarefa</h2>
+<section id="top">
+    <h2 *ngIf="!editingMode" class="font-bold text-center my-10 md:text-xl">Cadastrar Tarefa</h2>
+    <h2 *ngIf="editingMode" class="font-bold text-center my-10 md:text-xl">Editar Tarefa</h2>
         
     <form [formGroup]="taskForm" class="flex md:gap-10 flex-col w-full max-w-screen-md mx-auto">
         <div class="md:flex max-md:flex-col md:gap-6 items-center justify-center relative">
@@ -46,7 +47,7 @@
           class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
             <option value="">Selecione</option>
             <option value="Romeu">Romeu</option>
-            <option value="Fulano">Fulano</option>
+            <option value="Pedro">Pedro</option>
           </select>
 
           <div class="h-6 absolute top-6 md:top-8 right-8 md:right-10">
@@ -99,6 +100,7 @@
           </div>
       </div>
      
-      <button type="submit" (click)="onSubmit()" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm">Cadastrar</button>
+      <button type="submit" (click)="onSubmit()" *ngIf="!editingMode" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:mt-8 max-md:text-sm">Cadastrar</button>
+      <button type="button" (click)="onEdit()" *ngIf="editingMode" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm">Editar</button>
     </form>
 </section>

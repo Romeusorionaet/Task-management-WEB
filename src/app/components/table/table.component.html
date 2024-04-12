@@ -1,4 +1,4 @@
-<div class="overflow-auto scrollbar h-96 mt-10 relative max-w-screen-md w-full mx-auto">
+<div class="overflow-auto scrollbar h-96 mt-10 relative max-w-screen-md w-full mx-auto border-x border-zinc-400">
   <table class="border-separate bg-zinc-200 w-full">
     <thead class="bg-zinc-400 text-white text-xs md:text-base sticky top-0">
       <tr>
@@ -23,7 +23,7 @@
                 </div>
               </td>
               <td class="md:flex h-20 max-md:flex-col items-start md:items-center md:justify-evenly">
-                <button class="max-md:w-full text-start">Editar</button>
+                <button type="button" (click)="editTask(task)" class="max-md:w-full text-start">Editar</button>
                 <button type="button" (click)="task.id && removeTask(task.id)" class="max-md:mt-2">Excluir</button>
                 <button type="button" (click)="task.id && completeTask(task.id)" class="max-md:mt-2">Concluir</button>
               </td>
@@ -45,4 +45,11 @@
     <button>icon</button>
     <button>icon</button>
   </div>
+</div>
+
+<div class="bg-zinc-400 flex items-center justify-between p-2 w-full max-w-screen-md mx-auto">
+  <!-- parei aqui, organizar diretinho -->
+  <span class="max-md:text-xs">{{totalTasks}} total</span>
+  <span class="max-md:text-xs">{{totalTasksDone}} conlcuído</span>
+  <span class="max-md:text-xs">{{totalTasksInProgress}} não concluído</span>
 </div>
