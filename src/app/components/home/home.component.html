@@ -4,21 +4,21 @@
    <app-task-fom />
 
     <section>
-      <h2 class="text-center my-10 md:text-xl">Listagem de Tarefas</h2>
+      <h2 class="text-center my-10 md:text-xl font-bold">Listagem de Tarefas</h2>
           
-      <form method="post" class="flex flex-col gap-6 w-full max-w-screen-md mx-auto">
+      <form [formGroup]="taskForm" class="flex flex-col gap-6 w-full max-w-screen-md mx-auto">
           <div class="md:flex max-md:flex-col md:gap-3 items-center justify-start">
-              <label for="title" class="md:w-1/5 text-right max-md:text-xs ml-3">
-              Número:
+              <label for="priority" class="md:w-1/5 text-right max-md:text-xs ml-3">
+              Prioridade:
               </label>
-              <input type="text" name="title" class="border border-zinc-400 rounded-md p-1 md:w-1/5" />
+              <input formControlName="priority" type="text" name="priority" class="border border-zinc-400 rounded-md p-1 md:w-1/5" />
           </div>
 
           <div class="md:flex max-md:flex-col md:gap-6 items-center justify-center">
-              <label for="searchByTitleOrDescription" class="w-1/5 text-right max-md:text-xs">
+              <label for="titleOrDescription" class="w-1/5 text-right max-md:text-xs">
                   Título/Descrição:
               </label>
-              <input name="searchByTitleOrDescription" class="border border-zinc-400 rounded-md p-1 w-full" />
+              <input formControlName="titleOrDescription" name="titleOrDescription" class="border border-zinc-400 rounded-md p-1 w-full" />
           </div>
 
         <div class="flex flex-col md:flex-row max-md:space-y-11">
@@ -28,30 +28,33 @@
               </label>
 
               <select
-              name="responsible"
+              formControlName="responsibleUser"
+              name="responsibleUser"
               class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
-              <option value="Selecione">Selecione</option>
-          
+              <option value="">Selecione</option>
+              <option value="Romeu">Romeu</option>
+              <option value="Pedro">Pedro</option>
             </select>
           </div>
 
           <div class="flex md:gap-6 items-center md:justify-start justify-evenly md:w-1/2">
-              <label for="responsible" class="max-md:text-xs">
-                Prioridade:
+              <label for="status" class="max-md:text-xs">
+                Situação:
               </label>
 
               <select
-              name="priority"
+              formControlName="status"
+              name="status"
               class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
-              <option value="Selecione">Selecione</option>
-            
+              <option value="PROGRESS">Em andamento</option>
+              <option value="DONE">Concluída</option>
             </select>
           </div>
 
-          <button class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm whitespace-nowrap">buscar Tarefa</button>
+          <button type="submit" (click)="onSubmit()" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm whitespace-nowrap">buscar Tarefa</button>
         </div>
       </form>
 
-      <app-table />
+      <app-table [tasksSearch]="tasksSearch" />
   </section>
 </main>

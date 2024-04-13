@@ -8,42 +8,65 @@
         <th class="p-2">Ações</th>
       </tr>
     </thead>
-        <tbody class="bg-zinc-200">
-          @for(task of tasks; track task.id){
-            <tr *ngIf="task.status === statusTask" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
-              <td class="text-center relative">
-                {{task.priority}}
-                <button 
-                (click)="openModal(task)" 
-                class="absolute bottom-0 left-0">
-                  <mat-icon class="text-lg">visibility</mat-icon>
-                </button>
-              </td>
-              <td class="text-center truncate">
-                <div class="overflow-hidden w-20 md:w-32 mx-auto">
-                  {{task.title}}
-                </div>
-              </td>
-              <td class="text-center truncate">
-                <div class="overflow-hidden w-20 md:w-32 mx-auto">
-                  {{task.responsibleUser}}
-                </div>
-              </td>
-              <td class="md:flex h-20 max-md:flex-col items-start md:items-center md:justify-evenly">
-                <button type="button" (click)="editTask(task)" class="max-md:w-full text-start">Editar</button>
-                <button type="button" (click)="task.id && removeTask(task.id)" class="max-md:mt-2">Excluir</button>
-                <button type="button" (click)="task.id && completeTask(task.id)" class="max-md:mt-2">Concluir</button>
-              </td>
-            </tr>
-          }@empty {
-            <h2 class="absolute top-44 left-72">Começe a criar tarefas...</h2>
-          }
-        </tbody>
+    <tbody class="bg-zinc-200">
+      <ng-container *ngIf="tasksSearch.length > 0; else originalTasks">
+        <tr *ngFor="let task of tasksSearch" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
+          <td class="text-center relative">
+            {{ task.priority }}
+            <button (click)="openModal(task)" class="absolute bottom-0 left-0">
+              <mat-icon class="text-lg">visibility</mat-icon>
+            </button>
+          </td>
+          <td class="text-center truncate">
+            <div class="overflow-hidden w-20 md:w-32 mx-auto">
+              {{ task.title }}
+            </div>
+          </td>
+          <td class="text-center truncate">
+            <div class="overflow-hidden w-20 md:w-32 mx-auto">
+              {{ task.responsibleUser }}
+            </div>
+          </td>
+          <td class="md:flex h-20 max-md:flex-col items-start md:items-center md:justify-evenly">
+            <button type="button" (click)="editTask(task)" class="max-md:w-full text-start">Editar</button>
+            <button type="button" (click)="task.id && removeTask(task.id)" class="max-md:mt-2">Excluir</button>
+            <button type="button" (click)="task.id && completeTask(task.id)" class="max-md:mt-2">Concluir</button>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #originalTasks>
+        @for(task of tasks; track task.id){
+          <tr *ngIf="task.status === statusTask" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
+            <td class="text-center relative">
+              {{ task.priority }}
+              <button (click)="openModal(task)" class="absolute bottom-0 left-0">
+                <mat-icon class="text-lg">visibility</mat-icon>
+              </button>
+            </td>
+            <td class="text-center truncate">
+              <div class="overflow-hidden w-20 md:w-32 mx-auto">
+                {{ task.title }}
+              </div>
+            </td>
+            <td class="text-center truncate">
+              <div class="overflow-hidden w-20 md:w-32 mx-auto">
+                {{ task.responsibleUser }}
+              </div>
+            </td>
+            <td class="md:flex h-20 max-md:flex-col items-start md:items-center md:justify-evenly">
+              <button type="button" (click)="editTask(task)" class="max-md:w-full text-start">Editar</button>
+              <button type="button" (click)="task.id && removeTask(task.id)" class="max-md:mt-2">Excluir</button>
+              <button type="button" (click)="task.id && completeTask(task.id)" class="max-md:mt-2">Concluir</button>
+            </td>
+          </tr>
+        }
+      </ng-template>
+    </tbody>
   </table>
 </div>
 
 <div class="bg-zinc-400 flex items-center justify-between p-2 w-full max-w-screen-md mx-auto">
-  <span class="max-md:text-xs">conlcuído {{totalTasksDone}}</span>
-  <span class="max-md:text-xs">total {{totalTasks}}</span>
-  <span class="max-md:text-xs">não concluído {{totalTasksInProgress}}</span>
+  <span class="max-md:text-xs">concluído {{ totalTasksDone }}</span>
+  <span class="max-md:text-xs">total {{ totalTasks }}</span>
+  <span class="max-md:text-xs">não concluído {{ totalTasksInProgress }}</span>
 </div>

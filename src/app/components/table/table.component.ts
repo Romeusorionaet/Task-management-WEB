@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { StatusTask, Task } from '../../models/task.model';
@@ -24,6 +24,8 @@ export class TableComponent {
     private dialog: MatDialog
   ) {}
 
+  @Input() tasksSearch: Task[] = []
+  
   url = environment.api
   tasks: Task[] = []
 
