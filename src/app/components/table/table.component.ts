@@ -7,11 +7,12 @@ import { TaskSelectionService } from '../../services/TaskSelectionService';
 import { GetTasksService } from '../../services/GetTasksService';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, ModalComponent],
+  imports: [CommonModule, ModalComponent, MatIconModule],
   templateUrl: './table.component.html',
   styleUrl: '../../../styles.css'
 })

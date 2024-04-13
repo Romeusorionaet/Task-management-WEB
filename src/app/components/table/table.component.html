@@ -10,8 +10,15 @@
     </thead>
         <tbody class="bg-zinc-200">
           @for(task of tasks; track task.id){
-            <tr *ngIf="task.status === statusTask" (click)="openModal(task)" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
-              <td class="text-center">{{task.priority}}</td>
+            <tr *ngIf="task.status === statusTask" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
+              <td class="text-center relative">
+                {{task.priority}}
+                <button 
+                (click)="openModal(task)" 
+                class="absolute bottom-0 left-0">
+                  <mat-icon class="text-lg">visibility</mat-icon>
+                </button>
+              </td>
               <td class="text-center truncate">
                 <div class="overflow-hidden w-20 md:w-32 mx-auto">
                   {{task.title}}
@@ -36,20 +43,7 @@
 </div>
 
 <div class="bg-zinc-400 flex items-center justify-between p-2 w-full max-w-screen-md mx-auto">
-  <p class="max-md:text-xs">10 de 228 items</p>
-  <span class="max-md:text-xs">Página 1 de 485</span>
-  
-  <div class="max-md:text-xs">
-    <button>icon</button>
-    <button>icon</button>
-    <button>icon</button>
-    <button>icon</button>
-  </div>
-</div>
-
-<div class="bg-zinc-400 flex items-center justify-between p-2 w-full max-w-screen-md mx-auto">
-  <!-- parei aqui, organizar diretinho -->
-  <span class="max-md:text-xs">{{totalTasks}} total</span>
-  <span class="max-md:text-xs">{{totalTasksDone}} conlcuído</span>
-  <span class="max-md:text-xs">{{totalTasksInProgress}} não concluído</span>
+  <span class="max-md:text-xs">conlcuído {{totalTasksDone}}</span>
+  <span class="max-md:text-xs">total {{totalTasks}}</span>
+  <span class="max-md:text-xs">não concluído {{totalTasksInProgress}}</span>
 </div>
