@@ -1,0 +1,26 @@
+<div mat-dialog-container>
+    <h1 mat-dialog-title>{{task.title}}</h1>
+    <div mat-dialog-content>
+        {{task.description}}
+
+        <div class="absolute right-2 bottom-2 w-1/2">
+            <div class="flex flex-col items-end gap-2">
+                <span class="text-xs">Criado em: {{task.createdAt && formatDate(task.createdAt.toString()) }}</span>
+                <span class="text-xs">Previsto para: {{ task.deadline && formatDate(task.deadline) }}</span>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <a type="button"
+        (click)="closeModal()" 
+        mat-raised-button color="warn" 
+        class="cursor-pointer m-4 border border-zinc-300 p-1 rounded-full"
+        >
+            X
+        </a>
+    </div>
+    <span 
+    class="absolute top-2 right-2">
+        {{status}}
+    </span>
+</div>

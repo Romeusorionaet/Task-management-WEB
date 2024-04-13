@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { StatusTask, Task } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TaskSelectionService } from '../../services/TaskSelectionService';
 import { GetTasksService } from '../../services/GetTasksService';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalComponent],
   templateUrl: './table.component.html',
   styleUrl: '../../../styles.css'
 })
@@ -18,6 +20,7 @@ export class TableComponent {
     private http: HttpClient, 
     private taskSelectionService: TaskSelectionService,
     private getTasksService: GetTasksService,
+    private dialog: MatDialog
   ) {}
 
   url = environment.api
@@ -28,7 +31,21 @@ export class TableComponent {
   totalTasks = 0
   totalTasksInProgress = 0
   totalTasksDone = 0
-  
+
+  openModal(task: Task) {
+    this.dialog.open(ModalComponent, {
+      width: '80%',
+      position: {
+        top: '-500px',
+        left: '9%',
+        right: '5%'
+      },
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '1000ms',
+      data: task,
+    });
+  }
+
   ngOnInit(): void {
     this.getTasks()
   }

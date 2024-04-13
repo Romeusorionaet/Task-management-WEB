@@ -10,7 +10,7 @@
     </thead>
         <tbody class="bg-zinc-200">
           @for(task of tasks; track task.id){
-            <tr *ngIf="task.status === statusTask" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
+            <tr *ngIf="task.status === statusTask" (click)="openModal(task)" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
               <td class="text-center">{{task.priority}}</td>
               <td class="text-center truncate">
                 <div class="overflow-hidden w-20 md:w-32 mx-auto">

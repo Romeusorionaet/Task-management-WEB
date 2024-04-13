@@ -35,7 +35,7 @@ export class TaskFomComponent {
 
   constructor(
     private http: HttpClient, 
-    @Inject(LOCALE_ID) public locale: string,
+    @Inject(LOCALE_ID) public locale: 'pt-br',
     private taskSelectionService: TaskSelectionService,
   ) {
     this.taskForm = new FormGroup({
