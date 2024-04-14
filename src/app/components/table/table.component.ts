@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { PriorityTask, StatusTask, Task } from '../../models/task.model';
@@ -12,20 +12,17 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, ModalComponent, MatIconModule],
+  imports: [
+    CommonModule, 
+    ModalComponent, 
+    MatIconModule
+  ],
   templateUrl: './table.component.html',
   styleUrl: '../../../styles.css'
 })
 export class TableComponent {
-  constructor(
-    private http: HttpClient, 
-    private taskSelectionService: TaskSelectionService,
-    private getTasksService: GetTasksService,
-    private dialog: MatDialog
-  ) {}
-
+  
   @Input() tasksSearch: Task[] = []
-  @Output() taskSelected: EventEmitter<Task> = new EventEmitter<Task>();
   
   url = environment.api
   tasks: Task[] = []
@@ -36,7 +33,16 @@ export class TableComponent {
   totalTasksInProgress = 0
   totalTasksDone = 0
 
-  ngOnInit(): void {
+  blockedVisibility = false
+
+  constructor(
+    private http: HttpClient, 
+    private taskSelectionService: TaskSelectionService,
+    private getTasksService: GetTasksService,
+    private dialog: MatDialog
+  ) {}
+
+  ngOnInit() {
     this.getTasks()
   }
 
@@ -65,10 +71,12 @@ export class TableComponent {
   }
 
   openModal(task: Task) {
-    this.dialog.open(ModalComponent, {
+    this.blockedVisibility = true
+
+    const dialogRef = this.dialog.open(ModalComponent, {
       width: '90%',
       position: {
-        top: '150px',
+        top: '10%',
         left: '9%',
         right: '5%'
       },
@@ -76,38 +84,47 @@ export class TableComponent {
       exitAnimationDuration: '200ms',
       data: task,
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'Closed using function') {
+        this.blockedVisibility = false
+      }
+    })
   }
 
   editTask(task: Task): void {
     this.taskSelectionService.setSelectedTask(task)
-    this.taskSelected.emit(task)
   }
 
   removeTask(taskId: string){
+    this.forceReload() 
+
     this.http.delete(`${this.url}/task/remove/${taskId}`).subscribe({
       next: _ => {
-        //Todo show in toolltip
-          console.log('Task removed successfully');
-          this.ngOnInit()
+          this.getTasks()
       },
       error: error => {
-        //Todo show in toolltip
           console.error('Failed to remove task', error);
       }
     });
   }
 
   completeTask(taskId: string){
+    this.forceReload()
+
     this.http.patch(`${this.url}/task/done/${taskId}`, null).subscribe({
       next: _ => {
-        //Todo show in toolltip
-          console.log('Task complete successfully');
-          this.ngOnInit()
+          this.getTasks()
       },
       error: error => {
-        //Todo show in toolltip
           console.error('Failed to complete task', error);
       }
     });
+  }
+
+  forceReload() {
+    if(this.tasksSearch.length != 0) {
+      window.location.reload()
+    }
   }
 }

@@ -10,7 +10,12 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, TableComponent, TaskFomComponent, ReactiveFormsModule],
+  imports: [
+    HeaderComponent, 
+    TableComponent, 
+    TaskFomComponent, 
+    ReactiveFormsModule
+  ],
   templateUrl: './home.component.html',
   styleUrl: '../../../styles.css'
 })
@@ -43,11 +48,8 @@ export class HomeComponent {
     this.http.get<Task[]>(`${this.url}/search`, {params}).subscribe({
       next: response => {
         this.tasksSearch = response
-        //Todo show in toolltip
-        console.log('Request successful')
       },
       error: error => {
-        //Todo show in toolltip
         if (error.status === 400 && error.error) {
           console.error(error.status, error.error)
         } else {

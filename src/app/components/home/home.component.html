@@ -15,7 +15,7 @@
               <select
               formControlName="priority"
               name="priority"
-              class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+              class="border border-zinc-400 rounded-md p-1 w-1/5 max-md:text-xs">
                 <option value="">Select</option>
                 <option value="HIGH">Alta</option>
                 <option value="MEDIUM">Média</option>
@@ -36,14 +36,10 @@
                 Responsável:
               </label>
 
-              <select
+              <input
               formControlName="responsibleUser"
               name="responsibleUser"
-              class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
-              <option value="">Select</option>
-              <option value="Romeu">Romeu</option>
-              <option value="Pedro">Pedro</option>
-            </select>
+              class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs" />
           </div>
 
           <div class="flex md:gap-6 items-center md:justify-start justify-evenly md:w-1/2">
@@ -61,7 +57,12 @@
             </select>
           </div>
 
-          <button type="submit" (click)="onSubmit()" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:mt-8 max-md:text-sm hover:border-white hover:text-white hover:bg-zinc-950 hover:border-transparent duration-700 font-bold text-zinc-500">buscar Tarefa</button>
+          <button 
+          type="submit" 
+          (click)="onSubmit()" 
+          class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:mt-8 max-md:text-sm hover:border-white hover:text-white hover:bg-zinc-950 hover:border-transparent duration-700 font-bold text-zinc-500 whitespace-nowrap">
+            buscar Tarefa
+          </button>
         </div>
       </form>
 

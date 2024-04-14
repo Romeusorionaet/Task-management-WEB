@@ -40,7 +40,7 @@ export class TaskFomComponent {
       id: new FormControl(""),
       title: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
       description: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(2000)]),
-      responsibleUser: new FormControl("", [Validators.required]),
+      responsibleUser: new FormControl("", [Validators.required, Validators.maxLength(20)]),
       priority: new FormControl("", [Validators.required]),
       deadline: new FormControl("", [Validators.required, this.deadlineValidator()]),
       createdAt: new FormControl(""),
@@ -90,12 +90,9 @@ export class TaskFomComponent {
 
       this.http.post<Task>(`${this.url}/create`, task).subscribe({
         next: _ => {
-          //Todo show in toolltip
-          console.log('Request successful')
           this.taskForm.reset()
         },
         error: error => {
-          //Todo show in toolltip
           if (error.status === 400 && error.error) {
             console.error(error.status, error.error)
           } else {
@@ -116,9 +113,7 @@ export class TaskFomComponent {
       editedTask.deadline = formatDate(editedTask.deadline, 'yyyy-MM-ddTHH:mm:ss', this.locale)
 
       this.http.put<Task>(`${this.url}/update`, editedTask).subscribe({
-        next: response => {
-          //Todo show in toolltip
-          console.log('Edit request successful', response)
+        next: _ => {
           this.taskForm.reset();
           this.selectedTask = null
           this.editingMode = false
@@ -131,7 +126,6 @@ export class TaskFomComponent {
         },
         error: error => {
           if (error.status === 400 && error.error) {
-            //Todo show in toolltip
             console.error(error.status, error.error)
           } else {
             console.error('Edit request failed', error.message)

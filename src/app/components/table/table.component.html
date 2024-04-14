@@ -2,10 +2,10 @@
   <table class="border-separate bg-zinc-400 w-full">
     <thead class="bg-zinc-500 text-white text-xs md:text-base sticky z-10 top-0">
       <tr>
-        <th class="p-2 w-10">Prioridade</th>
-        <th class="p-2 w-28">Título</th>
-        <th class="p-2 w-48">Responsável</th>
-        <th class="p-2">Ações</th>
+        <th class="p-2 w-10 uppercase">Prioridade</th>
+        <th class="p-2 w-28 uppercase">Título</th>
+        <th class="p-2 w-48 uppercase">Responsável</th>
+        <th class="p-2 uppercase">Ações</th>
       </tr>
     </thead>
     <tbody class="bg-zinc-400">
@@ -13,7 +13,10 @@
         <tr *ngFor="let task of tasksSearch" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
           <td class="text-center relative">
             {{ getPriorityText(task.priority) }}
-            <button (click)="openModal(task)" class="absolute bottom-0 right-0 hover:text-green-500">
+            <button 
+            *ngIf="!blockedVisibility"
+            (click)="openModal(task)" 
+            class="absolute bottom-0 right-0 hover:text-green-500">
               <mat-icon class="text-lg">visibility</mat-icon>
             </button>
           </td>
@@ -28,9 +31,28 @@
             </div>
           </td>
           <td class="md:flex h-20 max-md:flex-col items-start md:items-center md:justify-evenly">
-            <button type="button" (click)="editTask(task)" class="max-md:w-full text-start hover:text-green-500">Editar</button>
-            <button type="button" (click)="task.id && removeTask(task.id)" class="max-md:mt-2 hover:text-green-500">Excluir</button>
-            <button type="button" (click)="task.id && completeTask(task.id)" class="max-md:mt-2 hover:text-green-500">Concluir</button>
+            <button 
+            *ngIf="task.status == statusTask"
+            type="button" 
+            (click)="editTask(task)" 
+            class="max-md:w-full text-start hover:text-green-500">
+              <mat-icon class="text-lg">edit</mat-icon>
+            </button>
+
+            <button 
+            type="button" 
+            (click)="task.id && removeTask(task.id)" 
+            class="max-md:mt-2 hover:text-green-500">
+              <mat-icon class="text-lg">delete</mat-icon>
+            </button>
+
+            <button 
+            *ngIf="task.status == statusTask"
+            type="button" 
+            (click)="task.id && completeTask(task.id)" 
+            class="max-md:mt-2 hover:text-green-500">
+              <mat-icon class="text-lg">done</mat-icon>
+            </button>
           </td>
         </tr>
       </ng-container>
@@ -39,7 +61,10 @@
           <tr *ngIf="task.status === statusTask" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
             <td class="text-center relative">
               {{ getPriorityText(task.priority) }}
-              <button (click)="openModal(task)" class="absolute bottom-0 right-0 hover:text-green-500">
+              <button 
+              *ngIf="!blockedVisibility"
+              (click)="openModal(task)" 
+              class="absolute bottom-0 right-0 hover:text-green-500">
                 <mat-icon class="text-lg">visibility</mat-icon>
               </button>
             </td>
@@ -54,9 +79,26 @@
               </div>
             </td>
             <td class="md:flex h-20 max-md:flex-col items-start md:items-center md:justify-evenly">
-              <button type="button" (click)="editTask(task)" class="max-md:w-full text-start hover:text-green-500">Editar</button>
-              <button type="button" (click)="task.id && removeTask(task.id)" class="max-md:mt-2 hover:text-green-500">Excluir</button>
-              <button type="button" (click)="task.id && completeTask(task.id)" class="max-md:mt-2 hover:text-green-500">Concluir</button>
+              <button 
+              type="button" 
+              (click)="editTask(task)" 
+              class="hover:text-green-500">
+                <mat-icon class="text-lg">edit</mat-icon>
+              </button>
+
+              <button 
+              type="button" 
+              (click)="task.id && removeTask(task.id)" 
+              class="hover:text-green-500">
+                <mat-icon class="text-lg">delete</mat-icon>
+              </button>
+
+              <button 
+              type="button" 
+              (click)="task.id && completeTask(task.id)" 
+              class="hover:text-green-500">
+                <mat-icon class="text-lg">done</mat-icon>
+              </button>
             </td>
           </tr>
         }
@@ -66,7 +108,7 @@
 </div>
 
 <div class="bg-zinc-400 flex items-center justify-between p-2 w-full max-w-screen-md mx-auto">
-  <span class="max-md:text-xs text-white">concluído {{ totalTasksDone }}</span>
-  <span class="max-md:text-xs text-white">total {{ totalTasks }}</span>
-  <span class="max-md:text-xs text-white">não concluído {{ totalTasksInProgress }}</span>
+  <span class="max-md:text-xs text-white uppercase">concluído {{ totalTasksDone }}</span>
+  <span class="max-md:text-xs text-white uppercase">total {{ totalTasks }}</span>
+  <span class="max-md:text-xs text-white uppercase">em andamento {{ totalTasksInProgress }}</span>
 </div>

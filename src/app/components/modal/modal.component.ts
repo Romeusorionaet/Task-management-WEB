@@ -25,7 +25,7 @@ export class ModalComponent {
       }else{
         this.status = 'Concluída'
       }
-    }
+  }
   
   closeModal() {
     this.ref.close('Closed using function');
