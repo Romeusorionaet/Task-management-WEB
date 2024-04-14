@@ -15,6 +15,7 @@
                   Campo obrigatório!
                 </span>
                 <span class="text-red-500 text-xs" *ngIf="taskForm.controls['title'].errors?.['minlength']">O título deve conter no mínimo 3 caracteres.</span>
+                <span class="text-red-500 text-xs" *ngIf="taskForm.controls['title'].errors?.['maxlength']">O título deve conter no máximo 100 caracteres.</span>
               </div>
             </div>
         </div>
@@ -23,14 +24,15 @@
             <label for="description" class="w-1/5 text-right max-md:text-xs">
                 Descrição:
             </label>
-            <textarea formControlName="description" name="description" class="border border-zinc-400 rounded-md p-1 h-40 w-full"></textarea>
+            <textarea formControlName="description" name="description" class="border border-zinc-400 rounded-md p-1 h-40 w-full scrollbar"></textarea>
 
             <div class="h-16 md:absolute -bottom-16 right-0">
               <div *ngIf="taskForm.controls['description'].invalid && (isFormSubmitted || taskForm.controls['description'].touched || taskForm.controls['description'].dirty)">
                 <span class="text-red-500 text-xs" *ngIf="taskForm.controls['description'].errors?.['required']">
                   Campo obrigatório!
                 </span>
-                <span class="text-red-500 text-xs" *ngIf="taskForm.controls['description'].errors?.['minlength']">A descrição da tarefa deve ter pelo menos 10 caracteres para ser informativa o suficiente.</span>
+                <span class="text-red-500 text-xs" *ngIf="taskForm.controls['description'].errors?.['minlength']">A descrição da tarefa deve ter no mínimo 10 caracteres para ser informativa o suficiente.</span>
+                <span class="text-red-500 text-xs" *ngIf="taskForm.controls['description'].errors?.['maxlength']">A descrição da tarefa deve ter no máximo 2000 caracteres.</span>
               </div>
             </div>
         </div>
@@ -69,9 +71,9 @@
             name="priority"
             class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
               <option value="">Select</option>
-              <option value="LOW">baixa</option>
-              <option value="MEDIUM">média</option>
-              <option value="HIGH">alta</option>
+              <option value="LOW">Baixa</option>
+              <option value="MEDIUM">Média</option>
+              <option value="HIGH">Alta</option>
             </select>
 
           <div class="h-6 absolute top-6 md:top-8 right-8 md:right-0">

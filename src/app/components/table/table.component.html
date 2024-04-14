@@ -1,6 +1,6 @@
 <div class="overflow-auto scrollbar h-96 mt-10 relative max-w-screen-md w-full mx-auto border-x border-zinc-400">
   <table class="border-separate bg-zinc-200 w-full">
-    <thead class="bg-zinc-400 text-white text-xs md:text-base sticky top-0">
+    <thead class="bg-zinc-400 text-white text-xs md:text-base sticky z-10 top-0">
       <tr>
         <th class="p-2 w-10">Prioridade</th>
         <th class="p-2 w-28">Título</th>
@@ -13,7 +13,7 @@
         <tr *ngFor="let task of tasksSearch" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
           <td class="text-center relative">
             {{ getPriorityText(task.priority) }}
-            <button (click)="openModal(task)" class="absolute bottom-0 left-0">
+            <button (click)="openModal(task)" class="absolute bottom-0 right-0">
               <mat-icon class="text-lg">visibility</mat-icon>
             </button>
           </td>
@@ -39,7 +39,7 @@
           <tr *ngIf="task.status === statusTask" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
             <td class="text-center relative">
               {{ getPriorityText(task.priority) }}
-              <button (click)="openModal(task)" class="absolute bottom-0 left-0">
+              <button (click)="openModal(task)" class="absolute bottom-0 right-0 hover:text-green-500">
                 <mat-icon class="text-lg">visibility</mat-icon>
               </button>
             </td>

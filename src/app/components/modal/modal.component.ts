@@ -22,6 +22,8 @@ export class ModalComponent {
 
       if(this.task.status === StatusTask.PROGRESS){
         this.status = 'Em andamento'
+      }else{
+        this.status = 'Concluída'
       }
     }
   

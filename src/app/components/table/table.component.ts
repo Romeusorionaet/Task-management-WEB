@@ -65,14 +65,14 @@ export class TableComponent {
 
   openModal(task: Task) {
     this.dialog.open(ModalComponent, {
-      width: '80%',
+      width: '90%',
       position: {
         top: '-500px',
         left: '9%',
         right: '5%'
       },
-      enterAnimationDuration: '1000ms',
-      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '100ms',
+      exitAnimationDuration: '200ms',
       data: task,
     });
   }

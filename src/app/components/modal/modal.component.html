@@ -1,12 +1,14 @@
-<div mat-dialog-container>
-    <h1 mat-dialog-title>{{task.title}}</h1>
-    <div mat-dialog-content>
-        {{task.description}}
+<div mat-dialog-container class="z-20 bg-zinc-200">
+    <div class="h-20 mt-5 overflow-y-auto scrollbar border-b-4 border-zinc-600">
+        <h2 class="break-words" mat-dialog-title>{{task.title}}</h2>
+    </div>
+    <div mat-dialog-content class="scrollbar h-72">
+        <p class="break-words max-md:text-xs">{{task.description}}</p>
 
-        <div class="absolute right-2 bottom-2 w-1/2">
-            <div class="flex flex-col items-end gap-2">
-                <span class="text-xs">Criado em: {{task.createdAt && formatDate(task.createdAt.toString()) }}</span>
-                <span class="text-xs">Previsto para: {{ task.deadline && formatDate(task.deadline) }}</span>
+        <div class="absolute bottom-1 left-0 w-full">
+            <div class="flex items-end justify-around gap-2">
+                <span class="text-xs">📅: {{task.createdAt && formatDate(task.createdAt.toString()) }}</span>
+                <span class="text-xs">⏰: {{ task.deadline && formatDate(task.deadline) }}</span>
             </div>
         </div>
     </div>
@@ -14,13 +16,13 @@
         <a type="button"
         (click)="closeModal()" 
         mat-raised-button color="warn" 
-        class="cursor-pointer m-4 border border-zinc-300 p-1 rounded-full"
+        class="cursor-pointer m-4 border border-zinc-300 p-1 rounded-full hover:text-green-500"
         >
             X
         </a>
     </div>
     <span 
-    class="absolute top-2 right-2">
+    class="absolute top-2 right-2 text-xs">
         {{status}}
     </span>
 </div>

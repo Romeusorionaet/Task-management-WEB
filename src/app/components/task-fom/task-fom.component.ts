@@ -38,8 +38,8 @@ export class TaskFomComponent {
   ) {
     this.taskForm = new FormGroup({
       id: new FormControl(""),
-      title: new FormControl("", [Validators.required, Validators.minLength(3)]),
-      description: new FormControl("", [Validators.required, Validators.minLength(10)]),
+      title: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+      description: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(2000)]),
       responsibleUser: new FormControl("", [Validators.required]),
       priority: new FormControl("", [Validators.required]),
       deadline: new FormControl("", [Validators.required, this.deadlineValidator()]),
