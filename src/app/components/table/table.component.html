@@ -12,7 +12,7 @@
       <ng-container *ngIf="tasksSearch.length > 0; else originalTasks">
         <tr *ngFor="let task of tasksSearch" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
           <td class="text-center relative">
-            {{ task.priority }}
+            {{ getPriorityText(task.priority) }}
             <button (click)="openModal(task)" class="absolute bottom-0 left-0">
               <mat-icon class="text-lg">visibility</mat-icon>
             </button>
@@ -38,7 +38,7 @@
         @for(task of tasks; track task.id){
           <tr *ngIf="task.status === statusTask" class="text-xs h-20 md:text-base hover:bg-zinc-100 duration-300">
             <td class="text-center relative">
-              {{ task.priority }}
+              {{ getPriorityText(task.priority) }}
               <button (click)="openModal(task)" class="absolute bottom-0 left-0">
                 <mat-icon class="text-lg">visibility</mat-icon>
               </button>

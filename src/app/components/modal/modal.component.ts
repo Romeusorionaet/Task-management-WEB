@@ -7,7 +7,6 @@ import { formatDate } from '@angular/common';
   selector: 'app-modal',
   standalone: true,
   imports: [MatDialogModule],
-  // providers: [DatePipe],
   templateUrl: './modal.component.html',
 })
 export class ModalComponent {

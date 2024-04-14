@@ -45,7 +45,7 @@
           formControlName="responsibleUser"
           name="responsibleUser"
           class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
-            <option value="">Selecione</option>
+            <option value="">Select</option>
             <option value="Romeu">Romeu</option>
             <option value="Pedro">Pedro</option>
           </select>
@@ -64,13 +64,15 @@
               Prioridade:
             </label>
 
-          <select
-          formControlName="priority"
-          name="priority"
-          class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
-            <option value="">Selecione</option>
-            <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
-          </select>
+            <select
+            formControlName="priority"
+            name="priority"
+            class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+              <option value="">Select</option>
+              <option value="LOW">baixa</option>
+              <option value="MEDIUM">média</option>
+              <option value="HIGH">alta</option>
+            </select>
 
           <div class="h-6 absolute top-6 md:top-8 right-8 md:right-0">
             <div *ngIf="taskForm.controls['priority'].invalid && (isFormSubmitted || taskForm.controls['priority'].touched || taskForm.controls['priority'].dirty)">

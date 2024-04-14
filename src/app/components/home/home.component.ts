@@ -44,7 +44,7 @@ export class HomeComponent {
       next: response => {
         this.tasksSearch = response
         //Todo show in toolltip
-        console.log('Request successful', response)
+        console.log('Request successful')
       },
       error: error => {
         //Todo show in toolltip

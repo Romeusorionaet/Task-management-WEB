@@ -11,7 +11,16 @@
               <label for="priority" class="md:w-1/5 text-right max-md:text-xs ml-3">
               Prioridade:
               </label>
-              <input formControlName="priority" type="text" name="priority" class="border border-zinc-400 rounded-md p-1 md:w-1/5" />
+
+              <select
+              formControlName="priority"
+              name="priority"
+              class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+                <option value="">Select</option>
+                <option value="HIGH">Alta</option>
+                <option value="MEDIUM">Média</option>
+                <option value="LOW">Baixa</option>
+              </select>
           </div>
 
           <div class="md:flex max-md:flex-col md:gap-6 items-center justify-center">
@@ -31,7 +40,7 @@
               formControlName="responsibleUser"
               name="responsibleUser"
               class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
-              <option value="">Selecione</option>
+              <option value="">Select</option>
               <option value="Romeu">Romeu</option>
               <option value="Pedro">Pedro</option>
             </select>
@@ -46,6 +55,7 @@
               formControlName="status"
               name="status"
               class="border border-zinc-400 rounded-md p-1 w-1/2 max-md:text-xs">
+              <option value="">Select</option>
               <option value="PROGRESS">Em andamento</option>
               <option value="DONE">Concluída</option>
             </select>

@@ -31,8 +31,6 @@ export class TaskFomComponent {
 
   isFormSubmitted: boolean = false
 
-  priorities: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
   constructor(
     private http: HttpClient, 
     @Inject(LOCALE_ID) public locale: 'pt-br',
@@ -90,9 +88,9 @@ export class TaskFomComponent {
       task.deadline = formatDate(task.deadline, 'yyyy-MM-ddTHH:mm:ss', this.locale)
 
       this.http.post<Task>(`${this.url}/create`, task).subscribe({
-        next: response => {
+        next: _ => {
           //Todo show in toolltip
-          console.log('Request successful', response)
+          console.log('Request successful')
           this.taskForm.reset()
         },
         error: error => {

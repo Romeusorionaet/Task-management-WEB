@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { StatusTask, Task } from '../../models/task.model';
+import { PriorityTask, StatusTask, Task } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TaskSelectionService } from '../../services/TaskSelectionService';
 import { GetTasksService } from '../../services/GetTasksService';
@@ -35,6 +35,34 @@ export class TableComponent {
   totalTasksInProgress = 0
   totalTasksDone = 0
 
+  ngOnInit(): void {
+    this.getTasks()
+  }
+
+  getTasks(){
+    this.getTasksService.getTasks()
+    .subscribe((tasks: Task[]) => {
+      this.tasks = tasks
+
+      this.totalTasks = tasks.length
+      this.totalTasksDone = this.tasks.filter(task => task.status === StatusTask.DONE).length
+      this.totalTasksInProgress = this.tasks.filter(task => task.status === StatusTask.PROGRESS).length
+    })
+  }
+
+  getPriorityText(priority: string): string {
+    switch (priority) {
+      case PriorityTask.LOW:
+        return 'Baixa'
+      case PriorityTask.MEDIUM:
+        return 'Média'
+      case PriorityTask.HIGH:
+        return 'Alta'
+      default:
+        return ''
+    }
+  }
+
   openModal(task: Task) {
     this.dialog.open(ModalComponent, {
       width: '80%',
@@ -49,29 +77,15 @@ export class TableComponent {
     });
   }
 
-  ngOnInit(): void {
-    this.getTasks()
-  }
-
   editTask(task: Task): void {
     this.taskSelectionService.setSelectedTask(task);
   }
 
-  getTasks(){
-    this.getTasksService.getTasks()
-    .subscribe((tasks: Task[]) => {
-      this.tasks = tasks
-      this.totalTasks = tasks.length
-      this.totalTasksDone = this.tasks.filter(task => task.status === StatusTask.DONE).length
-      this.totalTasksInProgress = this.tasks.filter(task => task.status === StatusTask.PROGRESS).length
-    })
-  }
-
   removeTask(taskId: string){
     this.http.delete(`${this.url}/task/remove/${taskId}`).subscribe({
-      next: response => {
+      next: _ => {
         //Todo show in toolltip
-          console.log('Task removed successfully', response);
+          console.log('Task removed successfully');
           this.ngOnInit()
       },
       error: error => {
@@ -83,9 +97,9 @@ export class TableComponent {
 
   completeTask(taskId: string){
     this.http.patch(`${this.url}/task/done/${taskId}`, null).subscribe({
-      next: response => {
+      next: _ => {
         //Todo show in toolltip
-          console.log('Task complete successfully', response);
+          console.log('Task complete successfully');
           this.ngOnInit()
       },
       error: error => {
