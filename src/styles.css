@@ -31,4 +31,16 @@
   .scrollbar::-webkit-scrollbar-thumb {
     background: black;
   }
+
+  .Baixa {
+    background-color: green;
+  }
+
+  .Média {
+    background-color: yellow;
+  }
+
+  .Alta {
+    background-color: red;
+  }
 }

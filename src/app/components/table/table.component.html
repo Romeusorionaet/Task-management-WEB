@@ -19,6 +19,8 @@
             class="absolute bottom-0 right-0 hover:text-green-500">
               <mat-icon class="text-lg">visibility</mat-icon>
             </button>
+
+            <div [class]="getPriorityText(task.priority)" class="absolute top-0 h-full w-1"></div>
           </td>
           <td class="text-center truncate">
             <div class="overflow-hidden w-20 md:w-32 mx-auto">
@@ -67,6 +69,8 @@
               class="absolute bottom-0 right-0 hover:text-green-500">
                 <mat-icon class="text-lg">visibility</mat-icon>
               </button>
+
+              <div [class]="getPriorityText(task.priority)" class="absolute top-0 h-full w-1"></div>
             </td>
             <td class="text-center truncate">
               <div class="overflow-hidden w-20 md:w-32 mx-auto">

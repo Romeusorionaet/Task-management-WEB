@@ -31,4 +31,6 @@
     class="absolute top-2 left-2 text-xs">
         {{ task.responsibleUser }}
     </span>
+
+    <div [class]="getPriorityText(task.priority)" class="absolute top-0 h-full w-1"></div>
 </div>

@@ -1,13 +1,14 @@
 import { Component, Input, } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { PriorityTask, StatusTask, Task } from '../../models/task.model';
+import { StatusTask, Task } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TaskSelectionService } from '../../services/TaskSelectionService';
 import { GetTasksService } from '../../services/GetTasksService';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { MatIconModule } from '@angular/material/icon';
+import { UtilService } from '../../services/UtilService';
 
 @Component({
   selector: 'app-table',
@@ -39,7 +40,8 @@ export class TableComponent {
     private http: HttpClient, 
     private taskSelectionService: TaskSelectionService,
     private getTasksService: GetTasksService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private utilService: UtilService
   ) {}
 
   ngOnInit() {
@@ -57,19 +59,6 @@ export class TableComponent {
     })
   }
 
-  getPriorityText(priority: string): string {
-    switch (priority) {
-      case PriorityTask.LOW:
-        return 'Baixa'
-      case PriorityTask.MEDIUM:
-        return 'Média'
-      case PriorityTask.HIGH:
-        return 'Alta'
-      default:
-        return ''
-    }
-  }
-
   openModal(task: Task) {
     this.blockedVisibility = true
 
@@ -83,7 +72,7 @@ export class TableComponent {
       enterAnimationDuration: '100ms',
       exitAnimationDuration: '200ms',
       data: task,
-    });
+    })
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'Closed using function') {
@@ -106,7 +95,7 @@ export class TableComponent {
       error: error => {
           console.error('Failed to remove task', error);
       }
-    });
+    })
   }
 
   completeTask(taskId: string){
@@ -119,7 +108,11 @@ export class TableComponent {
       error: error => {
           console.error('Failed to complete task', error);
       }
-    });
+    })
+  }
+
+  getPriorityText(priority: string): string {
+    return this.utilService.getPriorityText(priority)
   }
 
   forceReload() {
