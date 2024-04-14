@@ -8,6 +8,9 @@ module.exports = {
       gap: {
         "17": "4.2rem",
       },
+      fontFamily: {
+        Roboto: 'Roboto, sans-serif',
+      }
     },
   },
   plugins: [],

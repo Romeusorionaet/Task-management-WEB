@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { PriorityTask, StatusTask, Task } from '../../models/task.model';
@@ -25,6 +25,7 @@ export class TableComponent {
   ) {}
 
   @Input() tasksSearch: Task[] = []
+  @Output() taskSelected: EventEmitter<Task> = new EventEmitter<Task>();
   
   url = environment.api
   tasks: Task[] = []
@@ -67,7 +68,7 @@ export class TableComponent {
     this.dialog.open(ModalComponent, {
       width: '90%',
       position: {
-        top: '-500px',
+        top: '150px',
         left: '9%',
         right: '5%'
       },
@@ -78,7 +79,8 @@ export class TableComponent {
   }
 
   editTask(task: Task): void {
-    this.taskSelectionService.setSelectedTask(task);
+    this.taskSelectionService.setSelectedTask(task)
+    this.taskSelected.emit(task)
   }
 
   removeTask(taskId: string){

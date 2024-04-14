@@ -12,6 +12,15 @@
   * {
     @apply antialiased box-border;
   }
+
+  h1,
+  h2,
+  h3,
+  span,
+  p,
+  label {
+    @apply font-Roboto;
+  }
 }
 
 @layer utilities {

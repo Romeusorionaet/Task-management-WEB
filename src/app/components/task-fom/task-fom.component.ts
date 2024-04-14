@@ -50,16 +50,17 @@ export class TaskFomComponent {
   ngOnInit(): void {
     this.taskSelectionService.selectedTask$.subscribe(task => {
       if (task) {
-        this.editingMode = true
-        this.scrollToTop()
-        task.deadline = formatDate(task.deadline, 'yyyy-MM-dd', this.locale)
-        this.selectedTask = task
-        this.updateForm()
-      } else {
-        this.taskForm.reset()
-        this.selectedTask = null
+        this.transferTaskForEdit(task)
       }
     })
+  }
+
+  transferTaskForEdit(task: Task): void {
+    this.editingMode = true;
+    this.scrollToTop();
+    task.deadline = formatDate(task.deadline, 'yyyy-MM-dd', this.locale);
+    this.selectedTask = task;
+    this.updateForm();
   }
 
   updateForm(): void {

@@ -1,4 +1,4 @@
-<section id="top">
+<section id="top" class="bg-gradient-to-b from-zinc-500/40 pb-10 pt-10 -mt-2">
     <h2 *ngIf="!editingMode" class="font-bold text-center my-10 md:text-xl">Cadastrar Tarefa</h2>
     <h2 *ngIf="editingMode" class="font-bold text-center my-10 md:text-xl">Editar Tarefa</h2>
         
@@ -104,7 +104,7 @@
           </div>
       </div>
      
-      <button type="submit" (click)="onSubmit()" *ngIf="!editingMode" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:mt-8 max-md:text-sm">Cadastrar</button>
-      <button type="button" (click)="onEdit()" *ngIf="editingMode" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm">Editar</button>
+      <button type="submit" (click)="onSubmit()" *ngIf="!editingMode" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:mt-8 max-md:text-sm hover:border-white hover:text-white hover:bg-zinc-950 hover:border-transparent duration-700 font-bold text-zinc-500">Cadastrar</button>
+      <button type="button" (click)="onEdit()" *ngIf="editingMode" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm  hover:border-white hover:text-white hover:bg-zinc-950 hover:border-transparent duration-700 font-bold text-zinc-500">Editar</button>
     </form>
 </section>

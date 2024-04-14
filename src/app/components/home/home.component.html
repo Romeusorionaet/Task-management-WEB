@@ -1,9 +1,9 @@
 <app-header />
 
-<main class="space-y-28 py-10 px-1">
+<main class="space-y-28 py-10 px-1 h-screen">
    <app-task-fom />
 
-    <section>
+    <section class="bg-gradient-to-t from-zinc-500/40 pb-10">
       <h2 class="text-center my-10 md:text-xl font-bold">Listagem de Tarefas</h2>
           
       <form [formGroup]="taskForm" class="flex flex-col gap-6 w-full max-w-screen-md mx-auto">
@@ -32,7 +32,7 @@
 
         <div class="flex flex-col md:flex-row max-md:space-y-11">
           <div class="flex md:gap-16 items-center md:justify-start justify-evenly md:w-1/2">
-              <label for="responsible" class="text-right w-1/5 ml-1 max-md:text-xs" >
+              <label for="responsibleUser" class="text-right w-1/5 ml-1 max-md:text-xs" >
                 Responsável:
               </label>
 
@@ -61,7 +61,7 @@
             </select>
           </div>
 
-          <button type="submit" (click)="onSubmit()" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:text-sm whitespace-nowrap">buscar Tarefa</button>
+          <button type="submit" (click)="onSubmit()" class="border border-zinc-400 w-28 rounded-md p-1 mx-auto max-md:mt-8 max-md:text-sm hover:border-white hover:text-white hover:bg-zinc-950 hover:border-transparent duration-700 font-bold text-zinc-500">buscar Tarefa</button>
         </div>
       </form>
 
