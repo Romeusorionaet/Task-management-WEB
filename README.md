@@ -1,27 +1,40 @@
-# MyApp
+<h1 align='center'> API de Gerênciamento de Tarefas </h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
+<p>A aplicação consiste em criar um simples gerenciador de tarefas
+com as seguintes funcionalidades:</p>
 
-## Development server
+- Criar uma tarefa
+- Atualizar a tarefa
+- Remover a tarefa
+- Listar tarefas
+- Visualizar detalhes da tarefa
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p> Esta aplicação foi desenvolvida utilizando as seguintes tecnologias: </p>
 
-## Code scaffolding
+- Angula
+- Tailwindcss
+- Typescriipt
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<br>
 
-## Build
+<p>Na figura a seguir representa o fomulário para cadastro de uma tarefa.</p>
+<img src="./src/assets/previewTasksDesktop.png" alt="" />
+<hr>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<p>Tabela das tarefas que não foram concluídas.</p>
+<p>Para visualização de tarefas específicas como por exemplo, tarefas já concluídas, pode-se fazer a filtragem no campo "situação" e clicar no botão "buscar tarefa".</p>
+<img src="./src/assets/previewTaskTableDesktop.png" alt="" />
+<hr>
 
-## Running unit tests
+<p>Ao fazer uma filtragem como por exemplo pela prioridade "Alta", terá as tarefas que tem a prioridade definida como "Alta"</p>
+<p>Segue ao lado um indentificador mais visual sobre a prioridade da tarefa, sendo ela, de cor vermelho indica "ALta", de cor amarelo indica "Média" e de cor verde indica "Baixa" prioridade.</p>
+<img src="./src/assets/previewTaskFilter1Desktop.png" alt="" />
+<hr>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<p>Cada tarefa também conta com alguma funcionalidades como, visualizar detalhes da tarefa sinalizado por um icone de um olho</p>
+<p>Pode também Editar, remover ou concluir uma tarefa, representados por icones.</p>
+<img src="./src/assets/previewTaskEventsDesktop.png" alt="" />
+<hr>
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<p>Clicando em detalhes (icone do olho) de alguma tarefa podemos visualizar com mais detalhes essa tarefa.</p>
+<img src="./src/assets/previewTaskDetailsDesktop.png" alt="" />
