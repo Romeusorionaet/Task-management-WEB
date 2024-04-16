@@ -13,9 +13,25 @@ com as seguintes funcionalidades:</p>
 
 - Angula
 - Tailwindcss
-- Typescriipt
+- Typescript
 
-<br>
+<hr>
+
+<h3>Aplicação pública</h3>
+
+<p>Para visualizar o funcionamento dessa aplicação em desenvolvimento, clone esse repositório em sua máquina.</p>
+
+> https://github.com/Romeusorionaet/Task-management-WEB.git
+
+<p>Depois de abrir no seu IDE o projeto, execute o comando abaixo para instalar todas as dependências.</p>
+
+> npm install
+
+<p>É necessário que tenha instalado e iniciado a API que essa aplicação consome em desenvolvimento. Caso ainda não tenha feito isso, entre no repositório pelo link abaixo</p>
+
+> https://github.com/Romeusorionaet/Task-management-API
+
+<h2>Apresentação</h2>
 
 <p>Na figura a seguir representa o fomulário para cadastro de uma tarefa.</p>
 <img src="./src/assets/previewTasksDesktop.png" alt="" />
